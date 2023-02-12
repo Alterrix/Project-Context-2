@@ -9,6 +9,8 @@ public class RoomSwitch : MonoBehaviour
     [SerializeField] GameObject oldCamera;
     [SerializeField] GameObject newCamera;
     [SerializeField] GameObject newSwitch;
+    [SerializeField] GameObject newPoint;
+    [SerializeField] GameObject player;
     private bool swap = false;
     //old camera is the camera from the room you came from
     //new camera is the camera from the room you are going too
@@ -25,6 +27,7 @@ public class RoomSwitch : MonoBehaviour
             oldCamera.gameObject.SetActive(false);
             newSwitch.gameObject.SetActive(false);
             Debug.Log("triggerd");
+            player.transform.position = newPoint.transform.position;
         }
     }
 
