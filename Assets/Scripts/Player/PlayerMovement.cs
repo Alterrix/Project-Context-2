@@ -2,9 +2,15 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private Animator animator;
     public float speed;
     public float rotationSpeed;
 
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
     void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -17,8 +23,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (movementDirection != Vector3.zero)
         {
+            animator.SetBool("IsMoving", true);
             Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+        }
+        else
+        {
+            animator.SetBool("IsMoving", false);
         }
     }
 }
