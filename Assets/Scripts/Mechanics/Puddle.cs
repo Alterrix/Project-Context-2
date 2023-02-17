@@ -6,7 +6,6 @@ public class Puddle : MonoBehaviour
 {
     public Animator animator;
     public PlayerMechanics pl;
-    public GameObject puddle;
 
     private void Start()
     {
@@ -23,6 +22,13 @@ public class Puddle : MonoBehaviour
             //Add animation puddle cleaning
         }
         else
+        {
+            animator.enabled = false;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
         {
             animator.enabled = false;
         }
