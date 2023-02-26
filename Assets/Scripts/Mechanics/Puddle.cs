@@ -6,6 +6,7 @@ public class Puddle : MonoBehaviour
 {
     public Animator animator;
     public PlayerMechanics pl;
+    public GameObject puddle;
 
     private void Start()
     {
