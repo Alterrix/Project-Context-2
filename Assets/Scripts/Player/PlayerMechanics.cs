@@ -5,11 +5,7 @@ using UnityEngine;
 public class PlayerMechanics : MonoBehaviour
 {
     public bool cleaning = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public bool workerBump = false;
 
     // Update is called once per frame
     private void Update()
@@ -22,6 +18,15 @@ public class PlayerMechanics : MonoBehaviour
         {
             cleaning = false;
         }
-        Debug.Log(cleaning);
+        //Debug.Log(cleaning);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Worker")
+        {
+            workerBump = true;
+        }
+    }
+
 }
