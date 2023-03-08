@@ -18,7 +18,7 @@ public class Puddle : MonoBehaviour
     {
         if(other.tag == "Player" && pl.cleaning )
         {
-            Debug.Log("ghello");
+            Debug.Log("Cleaning");
             animator.enabled = true;
             //Add animation puddle cleaning
         }
