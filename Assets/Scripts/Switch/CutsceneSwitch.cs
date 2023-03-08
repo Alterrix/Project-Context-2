@@ -19,7 +19,7 @@ public class CutsceneSwitch : MonoBehaviour
         if(other = playerCollider)
         {
             Debug.Log("gelukt");
-            cameraAnimator.SetBool(playCutscene,true);
+            // cameraAnimator.SetBool(playCutscene,true);
             
         }
         
