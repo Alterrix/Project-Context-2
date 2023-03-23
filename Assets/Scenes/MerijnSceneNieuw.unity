@@ -9075,6 +9075,7 @@ GameObject:
   - component: {fileID: 834875430}
   - component: {fileID: 834875429}
   - component: {fileID: 834875431}
+  - component: {fileID: 834875432}
   m_Layer: 0
   m_Name: Locker Camera
   m_TagString: MainCamera
@@ -9089,14 +9090,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834875427}
-  m_LocalRotation: {x: 0.18023993, y: 0.37533024, z: -0.07465782, w: 0.90612745}
-  m_LocalPosition: {x: -12.43, y: 11.700001, z: -17.14}
+  m_LocalRotation: {x: 0.1834381, y: 0.3338837, z: -0.0664136, w: 0.9222047}
+  m_LocalPosition: {x: -12.19, y: 11.7, z: -17.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1394544272}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 22.5, y: 45, z: 0}
+  m_LocalEulerAnglesHint: {x: 22.5, y: 39.806, z: 0}
 --- !u!81 &834875429
 AudioListener:
   m_ObjectHideFlags: 0
@@ -9181,6 +9182,26 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!95 &834875432
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834875427}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dd86e8cb4e7fd7545bca3fbb06cc268d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &837186615
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15762,8 +15783,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1394544271}
-  m_LocalRotation: {x: -0, y: -0.3820098, z: -0, w: 0.9241583}
-  m_LocalPosition: {x: -144.7, y: 3.1528206, z: 161.9}
+  m_LocalRotation: {x: -0, y: -0.36131483, z: -0, w: 0.9324439}
+  m_LocalPosition: {x: -142.97414, y: 3.1528206, z: 167.42686}
   m_LocalScale: {x: 3.541513, y: 3.5415113, z: 3.541513}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15773,7 +15794,7 @@ Transform:
   - {fileID: 39809422}
   m_Father: {fileID: 0}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: -44.916, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -42.362, z: 0}
 --- !u!1001 &1405920878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17708,7 +17729,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1537858084}
   m_LocalRotation: {x: -0, y: -0.554113, z: -0, w: 0.83244145}
-  m_LocalPosition: {x: 215.6, y: 21.780367, z: -13.262491}
+  m_LocalPosition: {x: 160, y: 21.780367, z: -13.262491}
   m_LocalScale: {x: 3.541513, y: 3.5415113, z: 3.541513}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -21193,6 +21214,7 @@ GameObject:
   - component: {fileID: 1875753246}
   - component: {fileID: 1875753245}
   - component: {fileID: 1875753247}
+  - component: {fileID: 1875753248}
   m_Layer: 0
   m_Name: Camera 6
   m_TagString: MainCamera
@@ -21207,7 +21229,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1875753243}
-  m_LocalRotation: {x: 0.16221167, y: 0.54489505, z: -0.108386345, w: 0.8154933}
+  m_LocalRotation: {x: 0.1622117, y: 0.5448951, z: -0.1083863, w: 0.8154933}
   m_LocalPosition: {x: -20.93, y: 3.65, z: 0.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21299,6 +21321,26 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!95 &1875753248
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875753243}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 005f3196c11c313418807571b86b12df, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1878482118
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21385,6 +21427,7 @@ GameObject:
   - component: {fileID: 1897088266}
   - component: {fileID: 1897088265}
   - component: {fileID: 1897088267}
+  - component: {fileID: 1897088268}
   m_Layer: 0
   m_Name: Camera 9
   m_TagString: MainCamera
@@ -21399,8 +21442,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1897088263}
-  m_LocalRotation: {x: 0.1913417, y: 0.1913417, z: -0.038060226, w: 0.9619398}
-  m_LocalPosition: {x: -1.300011, y: 3.9800005, z: -24.16}
+  m_LocalRotation: {x: 0.1913417, y: 0.1913417, z: -0.03806023, w: 0.9619398}
+  m_LocalPosition: {x: -1.300011, y: 3.98, z: -24.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21491,6 +21534,26 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!95 &1897088268
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897088263}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 54828a6f8ec82384c84583169ff30cbe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1900706645
 GameObject:
   m_ObjectHideFlags: 0
