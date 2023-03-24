@@ -848,6 +848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0565dd65b0f6a74e82b70129886abdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  el: {fileID: 0}
   speed: 9
   rotationSpeed: 300
 --- !u!114 &5771757329666877845
@@ -862,7 +863,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fdc16db23272a245bf912a8a6ea19bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cleaning: 0
+  pressingE: 0
+  enableCarColl: 0
+  enablePickUpColl: 0
+  pickupCar: 0
+  playerCarColl: {fileID: 0}
+  trashPickupColl: {fileID: 0}
 --- !u!1 &6853465066502555563
 GameObject:
   m_ObjectHideFlags: 0
