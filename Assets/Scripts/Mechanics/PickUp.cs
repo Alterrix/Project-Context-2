@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
-    public Rigidbody rb;
+    public Rigidbody rbPickup;
     public BoxCollider coll;
     public Transform player, itemContainer, point;
 
@@ -13,6 +13,8 @@ public class PickUp : MonoBehaviour
 
     public bool equipped;
     public static bool slotFull;
+    bool cleancar;
+    public PlayerMechanics playerMechanics;
 
     private void Start()
     {
@@ -20,14 +22,14 @@ public class PickUp : MonoBehaviour
         if (!equipped)
         {
             //Disable optional script
-            rb.isKinematic = false;
+            rbPickup.isKinematic = false;
             coll.isTrigger = false;
         }
 
         if (equipped)
         {
             //Disable optional script
-            rb.isKinematic = true;
+            rbPickup.isKinematic = true;
             coll.isTrigger = true;
             slotFull = true;
         }
@@ -46,14 +48,27 @@ public class PickUp : MonoBehaviour
         {
             DropItem();
         }
+
+        if (equipped)
+        {
+            rbPickup.velocity = new Vector3(0, 0, 0);
+            //playeprb.velocity = new Vector3(0, 0, 0);
+        }
+        //PickUp worker car
+        if (playerMechanics.pickupCar && !equipped && distanceToPlayer.magnitude <= pickUpRange && Input.GetKeyDown(KeyCode.E) && !slotFull)
+        {
+            PickUpItem();
+        }
     }
+
     private void PickUpItem()
     {
         equipped = true;
         slotFull = true;
+        playerMechanics.enablePickUpColl = true;
 
         //Make rigidbody kinematic and a boxcollider trigger
-        rb.isKinematic = true;
+        rbPickup.isKinematic = true;
         coll.isTrigger = true;
 
         //Make item child and move to correct place
@@ -62,7 +77,7 @@ public class PickUp : MonoBehaviour
         transform.localRotation = Quaternion.Euler(Vector3.zero);
         transform.localScale = Vector3.one;
 
-
+        
         //Enable optional script
     }
 
@@ -70,25 +85,55 @@ public class PickUp : MonoBehaviour
     {
         equipped = false;
         slotFull = false;
+        playerMechanics.enablePickUpColl = false;
+        playerMechanics.enableCarColl = false;
 
         //set parent to null
         transform.SetParent(null);
 
         //Make rigidbody not kinematic and boxcoll normal
-        rb.isKinematic = false;
+        rbPickup.isKinematic = false;
         coll.isTrigger = false;
 
         //item force
-        rb.velocity = player.GetComponent<Rigidbody>().velocity;
+        rbPickup.velocity = player.GetComponent<Rigidbody>().velocity;
 
         //Addforce
-        rb.AddForce(point.forward * dropForwardForce, ForceMode.Impulse);
-        rb.AddForce(point.up * dropUpwardForce, ForceMode.Impulse);
+        rbPickup.AddForce(point.forward * dropForwardForce, ForceMode.Impulse);
+        rbPickup.AddForce(point.up * dropUpwardForce, ForceMode.Impulse);
         //random rotation
         float random = Random.Range(-1f, 1f);
-        rb.AddTorque(new Vector3(random, random, random) * 10);
+        rbPickup.AddTorque(new Vector3(random, random, random) * 10);
 
 
         //disable optional script
+        playerMechanics.enableCarColl = false;
+        playerMechanics.enablePickUpColl = false;
     }
+
+
+    /* private void OnTriggerStay(Collider other)
+     {
+         if(other.tag == "Player")
+         {
+             cleancar = true;
+             if (!equipped && cleancar &&Input.GetKey(KeyCode.E))
+             {
+                 PickUpItem();
+                 //enabble player collider cleancar
+                 playerMechanics.enablePickUpColl = true;
+             }
+         }
+     }
+    */
+
+    /* private void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            cleancar = false;
+            //disable player cleancar
+        }
+    }
+    */
 }

@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Worker
+  - car
+  - elevatorLobby
+  - ElevatorRoom1
   layers:
   - Default
   - TransparentFX

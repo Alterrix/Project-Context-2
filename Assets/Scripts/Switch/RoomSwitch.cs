@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class RoomSwitch : MonoBehaviour
 {
@@ -27,7 +28,10 @@ public class RoomSwitch : MonoBehaviour
             oldCamera.gameObject.SetActive(false);
             newSwitch.gameObject.SetActive(false);
             Debug.Log("triggerd");
+            player.GetComponent<NavMeshAgent>().enabled = false;
             player.transform.position = newPoint.transform.position;
+            player.GetComponent<NavMeshAgent>().enabled = true;
+            Debug.Log(player.transform.position);
         }
     }
 
@@ -35,7 +39,7 @@ public class RoomSwitch : MonoBehaviour
     {
         if (swap)
         {
-            Invoke("RoomTimer", 3f);
+            Invoke("RoomTimer", 8f);
         }
     }
 
@@ -43,6 +47,6 @@ public class RoomSwitch : MonoBehaviour
     {
         newSwitch.gameObject.SetActive(true);
         swap = false;
-        Debug.Log("swap");
+        //Debug.Log("swap");
     }
 }

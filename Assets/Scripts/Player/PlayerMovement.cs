@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public Elevator el;
     private Animator animator;
     public float speed;
     public float rotationSpeed;
@@ -30,6 +31,11 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             animator.SetBool("IsMoving", false);
+        }
+
+        if (el.walking)
+        {
+            animator.SetBool("IsMoving",true);
         }
     }
 }

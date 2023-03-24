@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 public class Puddle : MonoBehaviour
@@ -16,7 +17,7 @@ public class Puddle : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.tag == "Player" && pl.cleaning )
+        if (other.tag == "Player" && pl.pressingE)
         {
             Debug.Log("Cleaning");
             animator.enabled = true;

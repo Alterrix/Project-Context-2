@@ -1,32 +1,75 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 public class PlayerMechanics : MonoBehaviour
 {
-    public bool cleaning = false;
-    public bool workerBump = false;
+    public bool pressingE = false;
+    public bool enableCarColl = false;
+    public bool enablePickUpColl = false;
+    public bool pickupCar = false;
+    public BoxCollider playerCarColl;
+    public BoxCollider trashPickupColl;
+
+
+    private void Start()
+    {
+        playerCarColl.enabled = false;
+        trashPickupColl.enabled = false;
+    }
 
     // Update is called once per frame
     private void Update()
     {
         if (Input.GetKey(KeyCode.E))
         {
-            cleaning = true;
+            pressingE = true;
         }
         else
         {
-            cleaning = false;
+            pressingE = false;
         }
-        //Debug.Log(cleaning);
+
+        if (enablePickUpColl)
+        {
+            trashPickupColl.enabled = true;
+        }
+        else
+        {
+            trashPickupColl.enabled = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Worker")
+        if (other.tag == "Worker")
         {
-            workerBump = true;
+            other.GetComponent<WorkersAi>().ActivateText();
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "car" && Input.GetKey(KeyCode.E))
+        {
+            pickupCar = true;
+            playerCarColl.enabled = true;
+            trashPickupColl.enabled = false;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "car")
+        {
+            pickupCar = false;
+            playerCarColl.enabled = false;
+        }
+
+        if (other.CompareTag("car"))
+        {
+
+        }
+    }
 }

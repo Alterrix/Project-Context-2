@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,8 +12,9 @@ public class WorkersAi : MonoBehaviour
     int waypointIndex;
     Vector3 target;
     public GameObject text;
+
+    //timer
     bool timer = false;
-    bool resetTimer;
     float currentTime;
     float startingTime = 0f;
 
@@ -28,39 +30,23 @@ public class WorkersAi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Vector3.Distance(transform.position,target) < 1)
+        if (Vector3.Distance(transform.position, target) < 1)
         {
             NextWaypoint();
             updateDestination();
         }
 
-        if(playerMechanics.workerBump)
-        {
-            timer = true;
-            
-            text.SetActive(true);
-            playerMechanics.workerBump = false;
-        }
-
         if (timer)
         {
-            currentTime += 1 * Time.deltaTime;
-        }
+            currentTime += Time.deltaTime;
 
-        if (currentTime >= 3f)
-        {
-            text.SetActive(false);
-            timer = false;
-            resetTimer = true;
-
+            if (currentTime >= 3f)
+            {
+                timer = false;
+                text.SetActive(false);
+                currentTime = startingTime;
+            }
         }
-        if (resetTimer)
-        {
-            currentTime = 0f;
-            resetTimer = false;
-        }
-        //Debug.Log(currentTime);
-        text.transform.localEulerAngles = new Vector3(0, 180, 0);
     }
 
     void updateDestination()
@@ -72,14 +58,15 @@ public class WorkersAi : MonoBehaviour
     void NextWaypoint()
     {
         waypointIndex++;
-        if(waypointIndex== waypoints.Length)
+        if (waypointIndex == waypoints.Length)
         {
             waypointIndex = 0;
         }
     }
 
-    void activateText()
+    public void ActivateText()
     {
-
+        timer = true;
+        text.SetActive(true);
     }
 }
