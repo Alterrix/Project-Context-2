@@ -6,11 +6,12 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     public float speed;
     public float rotationSpeed;
+    public GameObject player;
 
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = player.GetComponent<Animator>();
     }
     void Update()
     {

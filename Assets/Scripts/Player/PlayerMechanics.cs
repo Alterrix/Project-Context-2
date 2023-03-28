@@ -11,6 +11,8 @@ public class PlayerMechanics : MonoBehaviour
     public bool pickupCar = false;
     public BoxCollider playerCarColl;
     public BoxCollider trashPickupColl;
+    public bool equippedItem = false;
+
 
 
     private void Start()
@@ -30,6 +32,7 @@ public class PlayerMechanics : MonoBehaviour
         {
             pressingE = false;
         }
+        //Debug.Log(equippedItem);
 
         if (enablePickUpColl)
         {

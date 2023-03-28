@@ -10,11 +10,14 @@ public class PickUp : MonoBehaviour
 
     public float pickUpRange;
     public float dropForwardForce, dropUpwardForce;
+    float currentTime = 0;
+    float startingtime = 0;
 
     public bool equipped;
     public static bool slotFull;
     bool cleancar;
     public PlayerMechanics playerMechanics;
+    public CleanItems cleanItems;
 
     private void Start()
     {
@@ -37,6 +40,25 @@ public class PickUp : MonoBehaviour
 
     private void Update()
     {
+        if(playerMechanics.equippedItem == false)
+        {
+            currentTime += Time.deltaTime;
+        }
+        //Debug.Log(currentTime);
+        
+
+        if (currentTime >= 5)
+        {
+            cleanItems.drop = true;
+        }
+
+        //Debug.Log(currentTime);
+
+        if(currentTime >= 8)
+        {
+            cleanItems.drop = false;
+            currentTime = 0f;
+        }
         //check if player is in range and presses E
         Vector3 distanceToPlayer = player.position - transform.position;
         if(!equipped && distanceToPlayer.magnitude <= pickUpRange && Input.GetKeyDown(KeyCode.E) && !slotFull)
@@ -63,6 +85,8 @@ public class PickUp : MonoBehaviour
 
     private void PickUpItem()
     {
+        currentTime = 0;
+        playerMechanics.equippedItem = true;
         equipped = true;
         slotFull = true;
         playerMechanics.enablePickUpColl = true;
@@ -83,6 +107,8 @@ public class PickUp : MonoBehaviour
 
     private void DropItem()
     {
+        currentTime = 0;
+        playerMechanics.equippedItem = false;
         equipped = false;
         slotFull = false;
         playerMechanics.enablePickUpColl = false;

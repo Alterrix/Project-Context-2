@@ -8,6 +8,8 @@ TagManager:
   - car
   - elevatorLobby
   - ElevatorRoom1
+  - items
+  - room2PickUp
   layers:
   - Default
   - TransparentFX

@@ -12,6 +12,7 @@ public class RoomSwitch : MonoBehaviour
     [SerializeField] GameObject newSwitch;
     [SerializeField] GameObject newPoint;
     [SerializeField] GameObject player;
+    public Elevator elevator;
     private bool swap = false;
     //old camera is the camera from the room you came from
     //new camera is the camera from the room you are going too
@@ -27,17 +28,19 @@ public class RoomSwitch : MonoBehaviour
             newCamera.gameObject.SetActive(true);
             oldCamera.gameObject.SetActive(false);
             newSwitch.gameObject.SetActive(false);
-            Debug.Log("triggerd");
+            //Debug.Log("triggerd");
             player.GetComponent<NavMeshAgent>().enabled = false;
             player.transform.position = newPoint.transform.position;
             player.GetComponent<NavMeshAgent>().enabled = true;
+            player.GetComponent<NavMeshAgent>().ResetPath();
+
             Debug.Log(player.transform.position);
         }
     }
 
     private void Update()
     {
-        if (swap)
+        if (swap && elevator.isElevator == false)
         {
             Invoke("RoomTimer", 8f);
         }
