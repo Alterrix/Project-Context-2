@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("IsMoving", false);
         }
+       
 
         if (el.walking)
         {

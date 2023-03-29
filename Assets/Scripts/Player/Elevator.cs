@@ -20,7 +20,9 @@ public class Elevator : MonoBehaviour
     public GameObject camRoom1;
     public GameObject roomswitchEl1;
     public GameObject roomswitchEl2;
+    public GameObject elevator2BoxColl;
     public bool walking = false;
+    public bool walkfix = true;
     bool timer = false;
     bool resetTimer;
     public bool elevatorLobby = false;
@@ -82,23 +84,30 @@ public class Elevator : MonoBehaviour
         }
         if (currentTime >= 3f)
         {
-            
+
         }
 
         if (currentTime >= 6f)
         {
-            roomswitchEl1.SetActive(true);
-            roomswitchEl2.SetActive(true);
+            //roomswitchEl1.SetActive(true);
+            //roomswitchEl2.SetActive(true);
             //camEl1.SetActive(false);
             resetTimer = true;
-            isElevator = false;
+            //isElevator = false;
         }
 
         if (elevatorRoom1WalkOut)
         {
             Invoke("El2WalkOut", 1f);
             Invoke("Elevator2WalkOut", 3f);
-            Debug.Log("ghjello");
+            Invoke("Elevator2Active", 5f);
+            //Debug.Log("ghjello");
+        }
+
+        if (elevatorLobby)
+        {
+            Invoke("El1WalkOut", 1f);
+            Invoke("Elevator1WalkOut", 3f);
         }
     }
 
@@ -115,16 +124,21 @@ public class Elevator : MonoBehaviour
     {
         if (other.tag == "elevatorLobby")
         {
-
+            walkfix = false;
             Elevator1();
-
+            roomswitchEl1.SetActive(false);
+            player.GetComponent<PlayerMovement>().enabled = false;
+            Invoke("PlayerMovement", 9f);
         }
 
         if (other.tag == "ElevatorRoom1")
         {
+            walkfix = false;
+            player.GetComponent<PlayerMovement>().enabled = false;
             El2WalkIn();
             roomswitchEl2.SetActive(false);
-            
+            Invoke("RoomSwitchEl2", 6f);
+            Invoke("PlayerMovement", 9f);
         }
 
 
@@ -149,16 +163,46 @@ public class Elevator : MonoBehaviour
 
         if (other.tag == "ElevatorRoom1")
         {
-            
+            elevatorLobby = true;
             //animEl1.SetBool("el2", false);
         }
     }
 
     void Elevator1()
     {
+        agent.isStopped = false;
+        Invoke("RoomSwitch1", 6f);
         roomswitchEl2.SetActive(false);
         camEl1.SetActive(true);
         camLobby.SetActive(false);
+        timer = true;
+        walking = true;
+        //animEl1.enabled = true;
+        animEl1.SetBool("el1", true);
+        // Invoke("AnimStartEl1", 3f);
+        liftTarget = elevator1In.position;
+        agent.SetDestination(liftTarget);
+        isElevator = true;
+        elevator2BoxColl.SetActive(false);
+    }
+
+    void RoomSwitch1()
+    {
+        roomswitchEl1.SetActive(true);
+    }
+
+    void RoomSwitchEl2()
+    {
+        roomswitchEl2.SetActive(true);
+    }
+
+    void Elevator2Active()
+    {
+        elevator2BoxColl.SetActive(true);
+    }
+
+    void ElevatorRoom1Enter()
+    {
         timer = true;
         walking = true;
         //animEl1.enabled = true;
@@ -168,23 +212,36 @@ public class Elevator : MonoBehaviour
         isElevator = true;
     }
 
-    void elevatorRoom1Enter()
+
+    void El1WalkOut()
     {
-        timer = true;
+        camLobby.SetActive(true);
+        camEl1.SetActive(false);
         walking = true;
-        //animEl1.enabled = true;
-        animEl1.SetBool("el2", true);
-        // Invoke("AnimStartEl1", 3f);
+        liftTarget = el1Out.position;
         agent.SetDestination(liftTarget);
-        isElevator = true;
+        //animEl2.enabled = true;
+        animEl1.SetBool("el1", true);
+        //Invoke("AnimStartEl2", 3f);
+        //Debug.Log("triggerd");
+        elevatorLobby = false;
     }
 
+    void Elevator1WalkOut()
+    {
+        animEl1.SetBool("el1", false);
+        walking = false;
+        agent.isStopped = true;
+        isElevator = false;
+    }
     void Elevator2WalkOut()
     {
         animEl2.SetBool("el2", false);
         walking = false;
         agent.isStopped = true;
+        isElevator = false;
     }
+   
 
     void El2WalkOut()
     {
@@ -196,10 +253,14 @@ public class Elevator : MonoBehaviour
         //Invoke("AnimStartEl2", 3f);
         //Debug.Log("triggerd");
         elevatorRoom1WalkOut = false;
+        
     }
 
     void El2WalkIn()
     {
+        camEl2.SetActive(true);
+        camRoom1.SetActive(false);
+        roomswitchEl1.SetActive(false);
         agent.isStopped = false;
         resetTimer = true;
         timer = true;
@@ -209,7 +270,11 @@ public class Elevator : MonoBehaviour
         agent.SetDestination(liftTarget);
         animEl2.SetBool("el2", true);
         isElevator = true;
-
     }
 
+    void PlayerMovement()
+    {
+        player.GetComponent<PlayerMovement>().enabled = true;
+        walkfix = true;
+    }
 }

@@ -14,6 +14,9 @@ public class RoomSwitch : MonoBehaviour
     [SerializeField] GameObject player;
     public Elevator elevator;
     private bool swap = false;
+    float currentTime;
+    float startingtime;
+    bool timer;
     //old camera is the camera from the room you came from
     //new camera is the camera from the room you are going too
     //new switch is the box collider that needs to be disabled to prevent camera switch back to the room you came from
@@ -24,6 +27,7 @@ public class RoomSwitch : MonoBehaviour
     {
         if(other.tag =="Player")
         {
+            timer = true;
             swap = true;
             newCamera.gameObject.SetActive(true);
             oldCamera.gameObject.SetActive(false);
@@ -33,13 +37,33 @@ public class RoomSwitch : MonoBehaviour
             player.transform.position = newPoint.transform.position;
             player.GetComponent<NavMeshAgent>().enabled = true;
             player.GetComponent<NavMeshAgent>().ResetPath();
-
             Debug.Log(player.transform.position);
+
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        
     }
 
     private void Update()
     {
+        if (timer)
+        {
+            currentTime += Time.deltaTime;
+        }
+        if(currentTime >= 1f)
+        {
+
+        }
+
+        if(currentTime >= 2f)
+        {
+            currentTime = 0f;
+            timer = false;
+        }
+        //&& elevator.isElevator == false
         if (swap && elevator.isElevator == false)
         {
             Invoke("RoomTimer", 8f);

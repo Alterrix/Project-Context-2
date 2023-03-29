@@ -47,14 +47,14 @@ public class PickUp : MonoBehaviour
         //Debug.Log(currentTime);
         
 
-        if (currentTime >= 5)
+        if (currentTime >= 5 && !equipped)
         {
             cleanItems.drop = true;
         }
 
         //Debug.Log(currentTime);
 
-        if(currentTime >= 8)
+        if (currentTime >= 6)
         {
             cleanItems.drop = false;
             currentTime = 0f;
@@ -85,6 +85,7 @@ public class PickUp : MonoBehaviour
 
     private void PickUpItem()
     {
+        cleanItems.drop = false;
         currentTime = 0;
         playerMechanics.equippedItem = true;
         equipped = true;
@@ -107,6 +108,7 @@ public class PickUp : MonoBehaviour
 
     private void DropItem()
     {
+        cleanItems.drop = true;
         currentTime = 0;
         playerMechanics.equippedItem = false;
         equipped = false;

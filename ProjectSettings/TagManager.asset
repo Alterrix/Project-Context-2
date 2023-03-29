@@ -9,7 +9,8 @@ TagManager:
   - elevatorLobby
   - ElevatorRoom1
   - items
-  - room2PickUp
+  - room2PickUpBlack
+  - room2PickUpGray
   layers:
   - Default
   - TransparentFX
