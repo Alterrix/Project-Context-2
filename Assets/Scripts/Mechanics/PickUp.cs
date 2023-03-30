@@ -17,7 +17,6 @@ public class PickUp : MonoBehaviour
     public static bool slotFull;
     bool cleancar;
     public PlayerMechanics playerMechanics;
-    public CleanItems cleanItems;
 
     private void Start()
     {
@@ -49,14 +48,12 @@ public class PickUp : MonoBehaviour
 
         if (currentTime >= 5 && !equipped)
         {
-            cleanItems.drop = true;
         }
 
         //Debug.Log(currentTime);
 
         if (currentTime >= 6)
         {
-            cleanItems.drop = false;
             currentTime = 0f;
         }
         //check if player is in range and presses E
@@ -85,7 +82,6 @@ public class PickUp : MonoBehaviour
 
     private void PickUpItem()
     {
-        cleanItems.drop = false;
         currentTime = 0;
         playerMechanics.equippedItem = true;
         equipped = true;
@@ -108,7 +104,6 @@ public class PickUp : MonoBehaviour
 
     private void DropItem()
     {
-        cleanItems.drop = true;
         currentTime = 0;
         playerMechanics.equippedItem = false;
         equipped = false;

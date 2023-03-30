@@ -5,11 +5,11 @@ using UnityEngine;
 public class CleanPickUp : MonoBehaviour
 {
     public GameObject teleportPoint;
-    public GameObject boxCollHallway;
-    int items = 0;
-    int items2 = 0;
-    public bool items1clean = false;
-    public bool items2clean = false;
+    public GameObject boxCollCoffee;
+    int items;
+    int items2;
+    private bool items1clean = false;
+    private bool items2clean = false;
 
 
 
@@ -33,21 +33,28 @@ public class CleanPickUp : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(items);
+        //Debug.Log(items);
+        //Debug.Log(items2);
+        Debug.Log(items1clean);
+        Debug.Log(items2clean);
 
-        if(items >= 3)
+        if (items >= 2)
         {
+            //Debug.Log("works");
             items1clean = true;
+            //Debug.Log(items1clean);
         }
 
-        if(items2 >= 3)
+        if(items2 >= 2)
         {
             items2clean = true;
+            //Debug.Log("works too");
         }
 
-        if(items1clean && items2clean)
+        if (items1clean && items2clean)
         {
-
+            boxCollCoffee.SetActive(false);
+            Debug.Log("Lemme IN");
         }
     }
 

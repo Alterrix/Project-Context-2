@@ -14,6 +14,7 @@ public class BossCoffeeroom : MonoBehaviour
     Vector3 roomEnter;
     Vector3 roomexit;
     public triggerCoffee triggerCoffee;
+    public bool boss = true;
 
 
     // Start is called before the first frame update
@@ -27,18 +28,26 @@ public class BossCoffeeroom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (triggerCoffee.coffee)
+        if (triggerCoffee.coffee && boss)
         {
+            //Debug.Log("Boss");
             agent.SetDestination(roomEnter);
-            Invoke("BossWalkAway",10f);
+            Invoke("Point", 7.6f);
+            Invoke("BossWalkAway",12f);
         }
     }
 
     void BossWalkAway()
     {
-        triggerCoffee.coffee = false;
         roomexit = CoffeeRoomExit.position;
+        animator.SetBool("Coffee", false);
         agent.SetDestination(roomexit);
+        boss = false;
+    }
+
+    void Point()
+    {
+        animator.SetBool("Coffee", true);
     }
 
 }

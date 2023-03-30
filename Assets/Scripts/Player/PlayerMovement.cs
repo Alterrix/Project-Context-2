@@ -7,7 +7,9 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public float rotationSpeed;
     public GameObject player;
-
+    public Bathroom bathroom;
+    public BathroomAi bathroomAi;
+    public DeathRoom deathRoom;
 
     private void Start()
     {
@@ -38,6 +40,20 @@ public class PlayerMovement : MonoBehaviour
         if (el.walking)
         {
             animator.SetBool("IsMoving",true);
+        }
+
+        if (bathroom.walking)
+        {
+            animator.SetBool("IsMoving", true);
+        }
+        if (bathroomAi.walking)
+        {
+            animator.SetBool("IsMoving", true);
+        }
+
+        if (deathRoom.walking)
+        {
+            animator.SetBool("IsMoving", true);
         }
     }
 }

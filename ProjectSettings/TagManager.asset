@@ -11,6 +11,7 @@ TagManager:
   - items
   - room2PickUpBlack
   - room2PickUpGray
+  - Bin
   layers:
   - Default
   - TransparentFX

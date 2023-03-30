@@ -13,8 +13,6 @@ public class PlayerMechanics : MonoBehaviour
     public BoxCollider trashPickupColl;
     public bool equippedItem = false;
 
-
-
     private void Start()
     {
         playerCarColl.enabled = false;
