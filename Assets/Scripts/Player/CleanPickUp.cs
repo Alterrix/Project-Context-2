@@ -38,14 +38,14 @@ public class CleanPickUp : MonoBehaviour
         Debug.Log(items1clean);
         Debug.Log(items2clean);
 
-        if (items >= 2)
+        if (items >= 3)
         {
             //Debug.Log("works");
             items1clean = true;
             //Debug.Log(items1clean);
         }
 
-        if(items2 >= 2)
+        if(items2 >= 3)
         {
             items2clean = true;
             //Debug.Log("works too");
