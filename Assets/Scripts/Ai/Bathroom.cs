@@ -56,6 +56,8 @@ public class Bathroom : MonoBehaviour
         if (other.tag == "Player")
         {
             playerNav.GetComponent<PlayerMovement>().speed = 0;
+            playerNav.GetComponent<PlayerMovement>().rotationSpeed = 0;
+
             push = true;
         }
     }
@@ -94,6 +96,8 @@ public class Bathroom : MonoBehaviour
     void DisableAnim()
     {
         walking = false;
-        playerNavmesh.GetComponent<PlayerMovement>().speed = 9;
+        playerNavmesh.GetComponent<PlayerMovement>().speed = 4;
+        playerNav.GetComponent<PlayerMovement>().rotationSpeed = 400;
+
     }
 }

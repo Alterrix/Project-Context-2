@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class AiCoffee : MonoBehaviour
 {
+    public GameObject player;
     NavMeshAgent agent;
     public GameObject workerCoffeeRoom;
     private Animator animator;
@@ -20,6 +21,7 @@ public class AiCoffee : MonoBehaviour
     public GameObject collToHallWay;
 
     public bool worker;
+    public bool wave = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +43,10 @@ public class AiCoffee : MonoBehaviour
             Invoke("Clean", 20f);
             Invoke("WalkAway", 22f);
         }
+        if (wave)
+        {
+            agent.transform.LookAt(player.transform);
+        }
     }
 
     void Walk()
@@ -57,6 +63,7 @@ public class AiCoffee : MonoBehaviour
     void WalkCoffee()
     {
         animator.SetBool("wave", false);
+        wave = false;
         roomEnter = coffeeMachine.position;
         agent.SetDestination(roomEnter);
         

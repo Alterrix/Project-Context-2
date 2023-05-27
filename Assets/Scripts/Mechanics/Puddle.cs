@@ -12,6 +12,11 @@ public class Puddle : MonoBehaviour
     public GameObject puddle2;
     public GameObject puddle3;
     public GameObject RudeClean;
+    public GameObject cleanText;
+    public GameObject cleanText2;
+    public GameObject cleanText3;
+
+
 
     public bool room1 = false;
     public bool puddleClean1 = false;
@@ -65,9 +70,26 @@ public class Puddle : MonoBehaviour
         {
             animator.enabled = false;
         }
+        if (!puddleClean1)
+        {
+            cleanText.SetActive(true);
+        }
+        if (!puddleClean2)
+        {
+            cleanText2.SetActive(true);
+        }
+        if (!puddleClean3)
+        {
+            cleanText3.SetActive(true);
+        }
     }
     private void OnTriggerExit(Collider other)
     {
+        cleanText3.SetActive(false);
+        cleanText.SetActive(false);
+        cleanText2.SetActive(false);
+
+
         if (other.tag == "Player")
         {
             animator.enabled = false;

@@ -74,6 +74,9 @@ public class BathroomAi : MonoBehaviour
         Debug.Log("Bathroom");
         walking = true;
         targetAI = PlayerMirror.position;
+        playerNav.GetComponent<PlayerMovement>().speed = 0;
+        playerNav.GetComponent<PlayerMovement>().rotationSpeed = 0;
+
         playerNav.SetDestination(targetAI);
         start = false;
         collBath.GetComponent<BoxCollider>().enabled = false;
@@ -89,6 +92,8 @@ public class BathroomAi : MonoBehaviour
     {
         targetAI = BossYell.position;
         agentAIBoss.SetDestination(targetAI);
+        playerNav.GetComponent<PlayerMovement>().speed = 4;
+        playerNav.GetComponent<PlayerMovement>().rotationSpeed = 400;
     }
 
     void DisableAnim()

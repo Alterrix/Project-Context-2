@@ -128,6 +128,7 @@ public class Elevator : MonoBehaviour
             Elevator1();
             roomswitchEl1.SetActive(false);
             player.GetComponent<PlayerMovement>().speed = 0;
+            player.GetComponent<PlayerMovement>().rotationSpeed = 0;
             Invoke("PlayerMovement", 9f);
         }
 
@@ -135,6 +136,7 @@ public class Elevator : MonoBehaviour
         {
             walkfix = false;
             player.GetComponent<PlayerMovement>().speed = 0;
+            player.GetComponent<PlayerMovement>().rotationSpeed = 0;
             El2WalkIn();
             roomswitchEl2.SetActive(false);
             Invoke("RoomSwitchEl2", 6f);
@@ -274,7 +276,8 @@ public class Elevator : MonoBehaviour
 
     void PlayerMovement()
     {
-        player.GetComponent<PlayerMovement>().speed = 9;
+        player.GetComponent<PlayerMovement>().speed = 4;
+        player.GetComponent<PlayerMovement>().rotationSpeed = 400;
         walkfix = true;
     }
 }
