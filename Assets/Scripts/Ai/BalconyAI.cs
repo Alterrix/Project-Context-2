@@ -10,6 +10,8 @@ public class BalconyAI : MonoBehaviour
     public GameObject agentWorker;
     public GameObject boss;
     public GameObject workersPush;
+    public GameObject carEnd;
+    public GameObject camBalcony;
 
 
     NavMeshAgent agentAIBoss;
@@ -43,24 +45,24 @@ public class BalconyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (DeathRoom.balcony && !navmeshOff)
+        if ( !navmeshOff)
         {
             Invoke("WorkerRun", 3f);
             Invoke("Idle", 8f);
             Invoke("BossRun", 14f);
             Invoke("WorkerRunBack", 14f);
-            Invoke("Idle", 16f);
+            Invoke("Idle2", 16.5f);
             Invoke("BossPoint", 18f);
             Invoke("WorkerWalkBack", 20f);
             Invoke("BossRunToWorker", 21f);
-            Invoke("Idle", 23f);
+            Invoke("Idle3", 23f);
             Invoke("RotateTowardsBoss", 23f);
             Invoke("BossPushing", 24f);
             Invoke("BossPush", 26f); //26
-            Invoke("ReloadScene", 29f);
+            Invoke("ReloadScene", 34f);
         }
 
-        if (DeathRoom.balcony)
+        
         {
             Invoke("WorkerFall", 27f);
         }
@@ -69,6 +71,15 @@ public class BalconyAI : MonoBehaviour
     {
         workerAnim.SetBool("idle", true);
         workerAnim.SetBool("run", false);
+    }
+
+    void Idle2()
+    {
+        workerAnim.SetBool("idle2", true);
+    }
+    void Idle3()
+    {
+        workerAnim.SetBool("idle3", true);
     }
     void WorkerRun()
     {
@@ -80,8 +91,7 @@ public class BalconyAI : MonoBehaviour
     {
         targetAiWorker = runBackWorker.position;
         workerAi.SetDestination(targetAiWorker);
-        workerAnim.SetBool("idle", false);
-        workerAnim.SetBool("run", true);
+        workerAnim.SetBool("run2", true);
     }
 
     void BossRun()
@@ -101,7 +111,7 @@ public class BalconyAI : MonoBehaviour
     {
         //Play slow back animation
         workerAnim.SetBool("idle", false);
-        workerAnim.SetBool("run", true);
+        workerAnim.SetBool("run3", true);
         targetAiWorker = workerWalkBackSlow.position;
         workerAi.SetDestination(targetAiWorker);
     }
@@ -111,7 +121,7 @@ public class BalconyAI : MonoBehaviour
         targetAiBoss = bossPush.position;
         agentAIBoss.SetDestination(targetAiBoss);
         bossAnim.SetBool("point", false);
-        bossAnim.SetBool("run", true);
+        bossAnim.SetBool("run2", true);
     }
 
     void BossPush()
@@ -135,17 +145,18 @@ public class BalconyAI : MonoBehaviour
 
     void WorkerFall()
     {
+        camBalcony.GetComponent<Animator>().enabled = true;
         workersPush.SetActive(true);
         agentWorker.SetActive(false);
         workerAnim.SetBool("fall", true);
         Debug.Log("AppelSap");
         navmeshOff = true;
+        carEnd.SetActive(true);
         //Play fall animation
     }
 
     void ReloadScene()
     {
         SceneManager.LoadScene(1);
-        DeathRoom.balcony = false;
     }
 }

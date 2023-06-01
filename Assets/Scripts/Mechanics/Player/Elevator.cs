@@ -70,7 +70,7 @@ public class Elevator : MonoBehaviour
 
         if (Input.GetKey(KeyCode.F))
         {
-            agent.isStopped = false;
+            //agent.isStopped = false;
         }
 
         if (timer)
@@ -200,7 +200,7 @@ public class Elevator : MonoBehaviour
 
     void Elevator2Active()
     {
-        elevator2BoxColl.SetActive(true);
+        elevator2BoxColl.SetActive(false);
     }
 
     void ElevatorRoom1Enter()
@@ -277,7 +277,7 @@ public class Elevator : MonoBehaviour
     void PlayerMovement()
     {
         player.GetComponent<PlayerMovement>().speed = 4;
-        player.GetComponent<PlayerMovement>().rotationSpeed = 400;
+        player.GetComponent<PlayerMovement>().rotationSpeed = 600;
         walkfix = true;
     }
 }

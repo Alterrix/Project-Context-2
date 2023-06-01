@@ -7,6 +7,7 @@ public class Broom : MonoBehaviour
     public GameObject broom;
     public bool bossPoint = false;
     public bool PickepUpBroom = false;
+    public GameObject coll;
     [SerializeField] PlayerMechanics pm;
     // Start is called before the first frame update
     private void OnTriggerStay(Collider other)
@@ -17,6 +18,7 @@ public class Broom : MonoBehaviour
             bossPoint = true;
             broom.SetActive(false);
             Debug.Log("pickup broom");
+            coll.SetActive(false);
         }
     }
 }

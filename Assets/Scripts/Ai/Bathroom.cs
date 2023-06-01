@@ -19,6 +19,7 @@ public class Bathroom : MonoBehaviour
     public Transform hallWayBathroom;
     public Transform HallwayExit;
     public GameObject collBath;
+    public GameObject collNotExitCoffee;
     bool push = false;
     public bool walking = false;
     Vector3 targetAI;
@@ -55,6 +56,7 @@ public class Bathroom : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            collNotExitCoffee.SetActive(true);
             playerNav.GetComponent<PlayerMovement>().speed = 0;
             playerNav.GetComponent<PlayerMovement>().rotationSpeed = 0;
 
@@ -97,7 +99,7 @@ public class Bathroom : MonoBehaviour
     {
         walking = false;
         playerNavmesh.GetComponent<PlayerMovement>().speed = 4;
-        playerNav.GetComponent<PlayerMovement>().rotationSpeed = 400;
+        playerNav.GetComponent<PlayerMovement>().rotationSpeed = 600;
 
     }
 }

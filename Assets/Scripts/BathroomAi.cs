@@ -93,7 +93,7 @@ public class BathroomAi : MonoBehaviour
         targetAI = BossYell.position;
         agentAIBoss.SetDestination(targetAI);
         playerNav.GetComponent<PlayerMovement>().speed = 4;
-        playerNav.GetComponent<PlayerMovement>().rotationSpeed = 400;
+        playerNav.GetComponent<PlayerMovement>().rotationSpeed = 600;
     }
 
     void DisableAnim()

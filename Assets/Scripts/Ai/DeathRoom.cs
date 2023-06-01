@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+using UnityEngine.SceneManagement;
 public class DeathRoom : MonoBehaviour
 {
     NavMeshAgent agentAIBoss;
@@ -12,7 +12,8 @@ public class DeathRoom : MonoBehaviour
     public GameObject playerNavmesh;
     public GameObject Boss;
     public GameObject cameraDeathroom;
-    public GameObject cameraBalcony;
+    public GameObject Balcony;
+    public GameObject balconycam;
 
     public Transform inspectWorker;
     public Transform turnAround;
@@ -26,7 +27,6 @@ public class DeathRoom : MonoBehaviour
     public bool finalShowdown = false;
     public bool chase = false;
     public bool walking = false;
-    public static bool balcony = false;
 
     Vector3 targetAI;
     Vector3 targetPlayer;
@@ -50,12 +50,14 @@ public class DeathRoom : MonoBehaviour
             Invoke("PlayerRun", 16f);
             Invoke("BossWalkIn", 16f);
             Invoke("CameraBalcony", 18f);
+            Invoke("CamBal", 19f);
+            Invoke("SceneReload", 51f);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if (other.tag == "Player")
         {
             playerNav.GetComponent<PlayerMovement>().speed = 0;
             playerNav.GetComponent<PlayerMovement>().rotationSpeed = 0;
@@ -81,7 +83,7 @@ public class DeathRoom : MonoBehaviour
         agentAIBoss.SetDestination(targetAI);
     }
 
-   
+
 
     void PlayerTurn()
     {
@@ -98,10 +100,18 @@ public class DeathRoom : MonoBehaviour
         playerNav.SetDestination(targetPlayer);
     }
 
-   void CameraBalcony()
+    void CameraBalcony()
     {
-        cameraBalcony.SetActive(true);
-        cameraDeathroom.SetActive(false);
-        balcony = true;
+        Balcony.SetActive(true);
+    }
+
+    void CamBal()
+    {
+        balconycam.SetActive(true);
+    }
+
+    void SceneReload()
+    {
+        SceneManager.LoadScene(1);
     }
 }

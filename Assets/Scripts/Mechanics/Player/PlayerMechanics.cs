@@ -75,7 +75,7 @@ public class PlayerMechanics : MonoBehaviour
             playerCarColl.enabled = false;
             anim.SetBool("push", false);
             player.GetComponent<PlayerMovement>().speed = 4f;
-            player.GetComponent<PlayerMovement>().rotationSpeed = 400f;
+            player.GetComponent<PlayerMovement>().rotationSpeed = 600f;
         }
 
         if (other.CompareTag("car"))
