@@ -62,7 +62,7 @@ public class PlayerMechanics : MonoBehaviour
             playerCarColl.enabled = true;
             trashPickupColl.enabled = false;
             anim.SetBool("push", true);
-            player.GetComponent<PlayerMovement>().speed = 1.5f;
+            player.GetComponent<PlayerMovement>().speed = 2.5f;
             player.GetComponent<PlayerMovement>().rotationSpeed = 40f;
         }
     }
